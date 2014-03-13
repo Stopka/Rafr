@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="6dp">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent" android:padding="6dp">
 
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="App Translation Service Noe Availible to All Developers"
+                    android:id="@+id/textView" android:textStyle="bold"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Nov 13, 2013 by Android Developers"
+                    android:id="@+id/textView2" android:clickable="false"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Posted by Ellie Powers, Google Play team"
+                    android:id="@+id/textView4" android:paddingTop="10dp" android:paddingBottom="20dp"
+                    android:textStyle="italic"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Nam egestas sagittis magna, vel ullamcorper leo posuere et. Fusce non suscipit justo. Curabitur rutrum semper nulla, at scelerisque est consequat eget.  Nulla sollicitudin velit tortor, id ultricies libero laoreet et. Etiam ut libero vel purus varius faucibus vel sit amet nisl. In eu condimentum odio. Integer in risus consequat, semper ante ac, egestas dolor. "
+                    android:id="@+id/textView5" android:autoText="false"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
