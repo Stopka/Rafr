@@ -1,6 +1,7 @@
 package cz.cvut.skorpste;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,8 @@ public class ListFragment extends Fragment {
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile"};
-        ArrayAdapter<String> adapter = new ArticleArrayAdapter(this.getActivity(), R.layout.listitem, values);
+                "Android", "iPhone", "WindowsMobile"};//TODO nahradit objektem
+        ArticleArrayAdapter adapter = new ArticleArrayAdapter(this.getActivity(), R.layout.listitem, values);
         articleList.setAdapter(adapter);
         articleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -37,6 +38,9 @@ public class ListFragment extends Fragment {
                 Toast.makeText(parent.getContext(),
                         "Click ListItem Number " + item, Toast.LENGTH_LONG)
                         .show();
+                Intent i = new Intent(parent.getContext(), FeedActivity.class);
+                i.putExtra(FeedActivity.ARTICLE, item);//TODO posílat identifikátor
+                startActivity(i);
             }
 
         });

@@ -25,7 +25,7 @@ public class ArticleArrayAdapter extends ArrayAdapter {
         TextView textView = (TextView) rowView.findViewById(R.id.title);
         String title=(String)getItem(position);
         textView.setText(title);
-
+        //TODO Nahradit objektem místo stringu
         return rowView;
     }
 

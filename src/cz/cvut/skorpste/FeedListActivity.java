@@ -3,7 +3,7 @@ package cz.cvut.skorpste;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class FeedList extends Activity {
+public class FeedListActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
