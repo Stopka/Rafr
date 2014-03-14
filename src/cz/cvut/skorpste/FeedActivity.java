@@ -5,6 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ShareActionProvider;
 
 /**
  * Created by stopka on 14.3.14.
@@ -12,7 +15,7 @@ import android.os.Bundle;
 public class FeedActivity extends Activity {
     public static final String EXTRA_FEED_ID = "article";
 
-    private Long feed_id;
+    private long feed_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,23 @@ public class FeedActivity extends Activity {
                 .beginTransaction()
                 .replace(R.id.detailFragment,f)
                 .commit();
+    }
+
+    @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share, menu);
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
+        Feed feed=Feeds.get().getFeed(feed_id);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_subject);
+        intent.putExtra(Intent.EXTRA_TEXT,feed.getTitle());
+
+        shareActionProvider.setShareIntent(intent);
+
+        return true;
     }
 
 }

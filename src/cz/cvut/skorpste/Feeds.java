@@ -41,14 +41,14 @@ public class Feeds {
     }
 
     public void setFeed(Feed feed) {
-        feeds.put(feed.getID(), feed);
+        feeds.put(Long.valueOf(feed.getID()), feed);
         if (feed.getID() >= nextId) {
             nextId = feed.getID() + 1;
         }
     }
 
     public Feed getFeed(long id) {
-        return feeds.get(id);
+        return feeds.get(Long.valueOf(id));
     }
 
     public Feed[] getFeeds() {
