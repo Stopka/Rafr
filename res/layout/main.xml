@@ -6,7 +6,7 @@
         >
     <fragment android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:name="cz.cvut.skorpste.ListFragment" android:id="@+id/fragment"
-              android:layout_gravity="center_horizontal" tools:layout="@layout/listfragment"/>
+              android:name="cz.cvut.skorpste.ListFragment" android:id="@+id/listFragment"
+              android:layout_gravity="center_horizontal"/>
 </LinearLayout>
 

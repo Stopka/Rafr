@@ -22,10 +22,12 @@ public class ArticleArrayAdapter extends ArrayAdapter {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.listitem, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.title);
-        String title=(String)getItem(position);
-        textView.setText(title);
-        //TODO Nahradit objektem místo stringu
+
+        Feed item=(Feed)getItem(position);
+
+        TextView title = (TextView) rowView.findViewById(R.id.title);
+        title.setText(item.getTitle());
+
         return rowView;
     }
 
