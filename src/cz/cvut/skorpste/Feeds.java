@@ -8,10 +8,34 @@ import java.util.HashMap;
  * Created by stopka on 14.3.14.
  */
 public class Feeds {
-    long nextId = 0;
-    HashMap<Long, Feed> feeds = new HashMap<Long, Feed>();
+    private class Key{
+        long num;
+        public Key(long num){
+            this.num=num;
+        }
 
-    public static Feeds singleton;
+        @Override
+        public int hashCode() {
+            return (int)num;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if(o instanceof Key){
+                return num==((Key)o).num;
+            }
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "Key:"+num;
+        }
+    }
+    long nextId = 0;
+    HashMap<Key, Feed> feeds = new HashMap<Key, Feed>();
+
+    public static Feeds singleton=null;
 
     public static Feeds get(){
         if(singleton==null){
@@ -41,14 +65,14 @@ public class Feeds {
     }
 
     public void setFeed(Feed feed) {
-        feeds.put(Long.valueOf(feed.getID()), feed);
+        feeds.put(new Key(feed.getID()), feed);
         if (feed.getID() >= nextId) {
             nextId = feed.getID() + 1;
         }
     }
 
     public Feed getFeed(long id) {
-        return feeds.get(Long.valueOf(id));
+        return feeds.get(new Key(id));
     }
 
     public Feed[] getFeeds() {
