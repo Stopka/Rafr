@@ -32,7 +32,7 @@ public class Feed {
     }
 
     public String getAuthor(){
-        return article;
+        return author;
     }
 
     public Date getDate(){
