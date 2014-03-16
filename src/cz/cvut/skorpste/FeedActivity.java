@@ -28,21 +28,21 @@ public class FeedActivity extends Activity {
         DetailFragment f = new DetailFragment(feed_id);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.detailFragment,f)
+                .replace(R.id.detailFragment, f)
                 .commit();
     }
 
     @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.share, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
 
         ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
-        Feed feed=Feeds.get().getFeed(feed_id);
+        Feed feed = Feeds.get().getFeed(feed_id);
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_subject);
-        intent.putExtra(Intent.EXTRA_TEXT,feed.getTitle());
+        intent.putExtra(Intent.EXTRA_TEXT, feed.getTitle());
 
         shareActionProvider.setShareIntent(intent);
 
