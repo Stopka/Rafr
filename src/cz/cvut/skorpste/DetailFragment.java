@@ -3,9 +3,8 @@ package cz.cvut.skorpste;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 /**
@@ -15,32 +14,46 @@ public class DetailFragment extends Fragment {
     public static final String ARTICLE = "article";
     public static final String ARTICLE_ID = "article_id";
 
-    private long id;
+    private Feed feed;
 
     public DetailFragment() {
-        //super();
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        this.id=getArguments().getLong(ARTICLE_ID);
+        long id=getArguments().getLong(ARTICLE_ID);
+        this.feed=Feeds.get().getFeed(id);
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.detailfragment, container, false);
-        Feed item=Feeds.get().getFeed(id);
         TextView title=(TextView)view.findViewById(R.id.title);
-        title.setText(item.getTitle());
+        title.setText(feed.getTitle());
         TextView author=(TextView)view.findViewById(R.id.author);
-        author.setText(item.getAuthor());
+        author.setText(feed.getAuthor());
         TextView article=(TextView)view.findViewById(R.id.text);
-        article.setText(item.getArticle());
+        article.setText(feed.getArticle());
         TextView date=(TextView)view.findViewById(R.id.date);
-        date.setText(item.getDate().toString());
+        date.setText(feed.getDate().toString());
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.share, menu);
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_subject);
+        intent.putExtra(Intent.EXTRA_TEXT, feed.getTitle());
+
+        shareActionProvider.setShareIntent(intent);
     }
 }

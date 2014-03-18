@@ -38,7 +38,6 @@ public class Feeds {
     public void addFeed(String title, String article, String author, Date date) {
         setFeed(new Feed(nextId, title, article, author, date));
         nextId++;
-        nextId++;
     }
 
     public void setFeed(Feed feed) {

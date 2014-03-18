@@ -23,7 +23,7 @@ public class FeedActivity extends Activity {
         setContentView(R.layout.detail);
 
         Intent i = getIntent();
-        Long feed_id = i.getLongExtra(EXTRA_FEED_ID, -1);
+        feed_id = i.getLongExtra(EXTRA_FEED_ID, -1);
 
         DetailFragment f = new DetailFragment();
         Bundle b=new Bundle();
@@ -37,17 +37,7 @@ public class FeedActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share, menu);
-        MenuItem item = menu.findItem(R.id.menu_item_share);
 
-        ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
-        Feed feed = Feeds.get().getFeed(feed_id);
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_subject);
-        intent.putExtra(Intent.EXTRA_TEXT, feed.getTitle());
-
-        shareActionProvider.setShareIntent(intent);
 
         return true;
     }

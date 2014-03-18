@@ -11,7 +11,8 @@ import android.widget.ListView;
  * Created by stopka on 13.3.14.
  */
 public class ListFragment extends android.app.ListFragment {
-    //TODO nahradit objektem
+
+    Feed[] feeds;
 
     ListListener listener;
 
@@ -31,15 +32,15 @@ public class ListFragment extends android.app.ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        ArticleArrayAdapter adapter=new ArticleArrayAdapter(this.getActivity(), R.layout.listitem, Feeds.get().getFeeds());
+        feeds=Feeds.get().getFeeds();
+        ArticleArrayAdapter adapter=new ArticleArrayAdapter(this.getActivity(), R.layout.listitem, feeds);
         setListAdapter(adapter);
         return super.onCreateView(inflater,container,savedInstanceState);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Feed[] f=Feeds.get().getFeeds();
-        listener.onListItemClick(f[position].getID());
+        long feed_id=feeds[position].getID();
+        listener.onListItemClick(feed_id);
     }
 }
