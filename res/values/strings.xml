@@ -3,4 +3,6 @@
     <string name="app_name">Rafr</string>
     <string name="share">Share</string>
     <string name="share_subject">Sending a feed</string>
+    <string name="feed_detail">Feed detail</string>
+    <string name="feed_list">Feed list</string>
 </resources>

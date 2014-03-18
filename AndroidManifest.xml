@@ -5,14 +5,17 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"
             android:targetSdkVersion="19"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/ic_launcher">
         <activity android:name=".FeedListActivity"
-                  android:label="@string/app_name">
+                  android:label="@string/feed_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".FeedActivity" android:label="Feed detail"/>
+        <activity android:name=".FeedActivity"
+                  android:label="@string/feed_detail"
+                  android:parentActivityName="FeedListActivity"/>
     </application>
 </manifest>
