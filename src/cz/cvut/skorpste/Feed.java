@@ -19,7 +19,7 @@ public class Feed {
         this.date=date;
     }
 
-    public Long getID(){
+    public long getID(){
         return id;
     }
 

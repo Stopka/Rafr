@@ -13,15 +13,19 @@ import android.widget.TextView;
  */
 public class DetailFragment extends Fragment {
     public static final String ARTICLE = "article";
+    public static final String ARTICLE_ID = "article_id";
 
     private long id;
 
-    public DetailFragment(long id) {
-        this.id = id;
+    public DetailFragment() {
+        //super();
     }
 
-    public DetailFragment() {
-        super();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        this.id=getArguments().getLong(ARTICLE_ID);
     }
 
     @Override

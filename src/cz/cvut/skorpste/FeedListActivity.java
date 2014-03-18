@@ -21,7 +21,10 @@ public class FeedListActivity extends Activity implements ListFragment.ListListe
     @Override
     public void onListItemClick(long id) {
         if (wide_layout) {
-            Fragment f = new DetailFragment(id);
+            Fragment f = new DetailFragment();
+            Bundle b=new Bundle();
+            b.putLong(DetailFragment.ARTICLE_ID,id);
+            f.setArguments(b);
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.detailFragment, f)

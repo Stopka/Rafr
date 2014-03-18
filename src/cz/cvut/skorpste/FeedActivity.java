@@ -25,7 +25,10 @@ public class FeedActivity extends Activity {
         Intent i = getIntent();
         Long feed_id = i.getLongExtra(EXTRA_FEED_ID, -1);
 
-        DetailFragment f = new DetailFragment(feed_id);
+        DetailFragment f = new DetailFragment();
+        Bundle b=new Bundle();
+        b.putLong(DetailFragment.ARTICLE_ID,feed_id);
+        f.setArguments(b);
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.detailFragment, f)

@@ -39,6 +39,7 @@ public class ListFragment extends android.app.ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        listener.onListItemClick(id);
+        Feed[] f=Feeds.get().getFeeds();
+        listener.onListItemClick(f[position].getID());
     }
 }
