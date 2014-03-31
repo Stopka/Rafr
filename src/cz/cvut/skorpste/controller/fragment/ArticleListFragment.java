@@ -1,11 +1,11 @@
 package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ListView;
+import android.widget.ShareActionProvider;
 import cz.cvut.skorpste.model.ArticleArrayAdapter;
 import cz.cvut.skorpste.model.Article;
 import cz.cvut.skorpste.model.Articles;
@@ -22,6 +22,8 @@ public class ArticleListFragment extends android.app.ListFragment {
 
     public static interface ListListener {
         public void onListItemClick(long id);
+
+        public void onConfigClick();
     }
 
     @Override
@@ -46,5 +48,27 @@ public class ArticleListFragment extends android.app.ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         long feed_id= articles[position].getID();
         listener.onListItemClick(feed_id);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.setting, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_setting:
+                listener.onConfigClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

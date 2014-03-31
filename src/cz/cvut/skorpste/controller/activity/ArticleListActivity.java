@@ -39,4 +39,10 @@ public class ArticleListActivity extends Activity implements ArticleListFragment
             startActivity(i);
         }
     }
+
+    @Override
+    public void onConfigClick() {
+        Intent i = new Intent(this, FeedListActivity.class);
+        startActivity(i);
+    }
 }

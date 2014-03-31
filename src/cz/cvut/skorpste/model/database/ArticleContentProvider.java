@@ -24,14 +24,17 @@ public class ArticleContentProvider extends ContentProvider {
 
     private static final String ARTICLE_PATH = "articles";
     private static final String FEED_PATH = "feeds";
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" );
+
+    public static final Uri ARTICLE_URI = Uri.parse("content://" + AUTHORITY + "/" + ARTICLE_PATH);
+    public static final Uri FEED_URI = Uri.parse("content://" + AUTHORITY + "/" + FEED_PATH);
 
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
     static {
         sURIMatcher.addURI(AUTHORITY, ARTICLE_PATH, ARTICLE_LIST);
-        sURIMatcher.addURI(AUTHORITY, ARTICLE_PATH+ "/#", ARTICLE_ID);
+        sURIMatcher.addURI(AUTHORITY, ARTICLE_PATH + "/#", ARTICLE_ID);
         sURIMatcher.addURI(AUTHORITY, FEED_PATH, FEED_LIST);
-        sURIMatcher.addURI(AUTHORITY, FEED_PATH+ "/#", FEED_ID);
+        sURIMatcher.addURI(AUTHORITY, FEED_PATH + "/#", FEED_ID);
     }
 
     @Override
@@ -114,14 +117,14 @@ public class ArticleContentProvider extends ContentProvider {
                 break;
             case ARTICLE_ID:
                 id = uri.getLastPathSegment();
-                rowsDeleted = sqlDB.delete(ArticleTable.TABLE_NAME, ArticleTable.ID+ "=" + id, null);
+                rowsDeleted = sqlDB.delete(ArticleTable.TABLE_NAME, ArticleTable.ID + "=" + id, null);
                 break;
             case FEED_LIST:
                 rowsDeleted = sqlDB.delete(FeedTable.TABLE_NAME, selection, selectionArgs);
                 break;
             case FEED_ID:
                 id = uri.getLastPathSegment();
-                rowsDeleted = sqlDB.delete(FeedTable.TABLE_NAME, FeedTable.ID+ "=" + id, null);
+                rowsDeleted = sqlDB.delete(FeedTable.TABLE_NAME, FeedTable.ID + "=" + id, null);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

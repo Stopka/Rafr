@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class FeedTable {
 
-    public static final String ID = "id";
+    public static final String ID = "_id";
 
     public static final String URL = "url";
 

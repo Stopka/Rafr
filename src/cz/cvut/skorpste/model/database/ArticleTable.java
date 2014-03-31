@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class ArticleTable{
 
-    public static final String ID = "id";
+    public static final String ID = "_id";
 
     public static final String URL_ID = "url_id";
 
@@ -21,7 +21,7 @@ public class ArticleTable{
 
     public static final String DATE = "date";
 
-    public static final String TABLE_NAME = "url";
+    public static final String TABLE_NAME = "article";
 
     private static final String DATABASE_CREATE = "create table "
             + TABLE_NAME
@@ -31,8 +31,8 @@ public class ArticleTable{
             + LINK + " text,"
             + TITLE + " text,"
             + AUTHOR + " text,"
-            + CONTENT + " text,"
-            + DATE + " date,"
+            + CONTENT + " text"
+            //+ DATE + " date,"
             + ");";
 
     public static void onCreate(SQLiteDatabase db) {
