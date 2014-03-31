@@ -1,18 +1,16 @@
-package cz.cvut.skorpste;
+package cz.cvut.skorpste.controller.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ShareActionProvider;
+import cz.cvut.skorpste.R;
+import cz.cvut.skorpste.controller.fragment.ArticleFragment;
 
 /**
  * Created by stopka on 14.3.14.
  */
-public class FeedActivity extends Activity {
+public class ArticleActivity extends Activity {
     public static final String EXTRA_FEED_ID = "article";
 
     private long feed_id;
@@ -20,14 +18,14 @@ public class FeedActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.article);
 
         Intent i = getIntent();
         feed_id = i.getLongExtra(EXTRA_FEED_ID, -1);
 
-        DetailFragment f = new DetailFragment();
+        ArticleFragment f = new ArticleFragment();
         Bundle b=new Bundle();
-        b.putLong(DetailFragment.ARTICLE_ID,feed_id);
+        b.putLong(ArticleFragment.ARTICLE_ID,feed_id);
         f.setArguments(b);
         getFragmentManager()
                 .beginTransaction()

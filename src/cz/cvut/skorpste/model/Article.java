@@ -1,20 +1,20 @@
-package cz.cvut.skorpste;
+package cz.cvut.skorpste.model;
 
 import java.util.Date;
 
 /**
  * Created by stopka on 14.3.14.
  */
-public class Feed {
+public class Article {
     private long id;
     private String title;
-    private String article;
+    private String text;
     private String author;
     private Date date;
-    public Feed(long id, String title,String article,String author,Date date) {
+    public Article(long id, String title, String text, String author, Date date) {
         this.id=id;
         this.title=title;
-        this.article=article;
+        this.text = text;
         this.author=author;
         this.date=date;
     }
@@ -27,8 +27,8 @@ public class Feed {
         return title;
     }
 
-    public String getArticle(){
-        return article;
+    public String getText(){
+        return text;
     }
 
     public String getAuthor(){

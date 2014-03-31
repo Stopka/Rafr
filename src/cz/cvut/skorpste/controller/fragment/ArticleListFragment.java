@@ -1,4 +1,4 @@
-package cz.cvut.skorpste;
+package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import cz.cvut.skorpste.model.ArticleArrayAdapter;
+import cz.cvut.skorpste.model.Article;
+import cz.cvut.skorpste.model.Articles;
+import cz.cvut.skorpste.R;
 
 /**
  * Created by stopka on 13.3.14.
  */
-public class ListFragment extends android.app.ListFragment {
+public class ArticleListFragment extends android.app.ListFragment {
 
-    Feed[] feeds;
+    Article[] articles;
 
     ListListener listener;
 
@@ -32,15 +36,15 @@ public class ListFragment extends android.app.ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        feeds=Feeds.get().getFeeds();
-        ArticleArrayAdapter adapter=new ArticleArrayAdapter(this.getActivity(), R.layout.listitem, feeds);
+        articles = Articles.get().getFeeds();
+        ArticleArrayAdapter adapter=new ArticleArrayAdapter(this.getActivity(), R.layout.article_list_item, articles);
         setListAdapter(adapter);
         return super.onCreateView(inflater,container,savedInstanceState);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        long feed_id=feeds[position].getID();
+        long feed_id= articles[position].getID();
         listener.onListItemClick(feed_id);
     }
 }

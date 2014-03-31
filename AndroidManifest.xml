@@ -7,15 +7,19 @@
             android:targetSdkVersion="19"/>
     <application android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher">
-        <activity android:name=".FeedListActivity"
+        <activity android:name=".controller.activity.ArticleListActivity"
                   android:label="@string/feed_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".FeedActivity"
+        <activity android:name=".controller.activity.ArticleActivity"
                   android:label="@string/feed_detail"
-                  android:parentActivityName="FeedListActivity"/>
+                  android:parentActivityName=".controller.activity.ArticleListActivity"/>
+        <provider
+                android:name=".model.database.ArticleContentProvider"
+                android:authorities="cz.cvut.skorpste.rafr"
+                android:exported="false" />
     </application>
 </manifest>
