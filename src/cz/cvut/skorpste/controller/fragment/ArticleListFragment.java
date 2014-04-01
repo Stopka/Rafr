@@ -1,6 +1,7 @@
 package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ListView;
@@ -8,6 +9,7 @@ import cz.cvut.skorpste.model.ArticleArrayAdapter;
 import cz.cvut.skorpste.model.Article;
 import cz.cvut.skorpste.model.Articles;
 import cz.cvut.skorpste.R;
+import cz.cvut.skorpste.model.feeds.FeedReader;
 
 /**
  * Created by stopka on 13.3.14.
@@ -17,6 +19,10 @@ public class ArticleListFragment extends android.app.ListFragment {
     Article[] articles;
 
     ListListener listener;
+
+    private FeedReader refreshTask;
+
+
 
     public static interface ListListener {
         public void onListItemClick(long id);
@@ -66,10 +72,23 @@ public class ArticleListFragment extends android.app.ListFragment {
                 listener.onConfigClick();
                 return true;
             case R.id.menu_item_refresh:
-                //listener.onConfigClick();
+                refreshTask=new FeedReader(getActivity());
+                refreshTask.execute();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void onRefreshStart(){
+        View refreshView;
+        LayoutInflater inflater = (LayoutInflater) getActivity().getActionBar().getThemedContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        /*
+        if(refreshing)
+            refreshView = inflater.inflate(R.layout.actionbar_indeterminate_progress, null);
+        else
+            refreshView = inflater.inflate(R.layout.refresh_icon, null);
+
+        menuItem.setActionView(refreshView);*/
     }
 }

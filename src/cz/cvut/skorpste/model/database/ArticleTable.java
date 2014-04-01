@@ -9,7 +9,7 @@ public class ArticleTable{
 
     public static final String ID = "_id";
 
-    public static final String URL_ID = "url_id";
+    public static final String FEED_ID = "feed_id";
 
     public static final String LINK = "link";
 
@@ -27,12 +27,12 @@ public class ArticleTable{
             + TABLE_NAME
             + "("
             + ID + " integer primary key autoincrement, "
-            + URL_ID + " integer,"
+            + FEED_ID + " integer,"
             + LINK + " text,"
             + TITLE + " text,"
             + AUTHOR + " text,"
-            + CONTENT + " text"
-            //+ DATE + " date,"
+            + CONTENT + " text,"
+            + DATE + " integer"
             + ");";
 
     public static void onCreate(SQLiteDatabase db) {

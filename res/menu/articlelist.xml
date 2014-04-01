@@ -4,6 +4,10 @@
     <item android:id="@+id/menu_item_setting"
           android:showAsAction="never"
           android:title="@string/setting"/>
+    <ProgressBar
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center" />
     <item android:id="@+id/menu_item_refresh"
           android:showAsAction="ifRoom"
           android:title="@string/refresh"
