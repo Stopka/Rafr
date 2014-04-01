@@ -65,6 +65,9 @@ public class ArticleListFragment extends android.app.ListFragment {
             case R.id.menu_item_setting:
                 listener.onConfigClick();
                 return true;
+            case R.id.menu_item_refresh:
+                //listener.onConfigClick();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
