@@ -21,7 +21,10 @@ public class FeedTable {
             + ");";
 
     public static void onCreate(SQLiteDatabase db) {
+
         db.execSQL(DATABASE_CREATE);
+        db.execSQL("insert into feed (url) values ('https://edux.fit.cvut.cz/feed.php');");
+        db.execSQL("insert into feed (url) values ('http://www.ceskatelevize.cz/ct24/rss/hlavni-zpravy/');");
     }
 
     public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
