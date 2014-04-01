@@ -76,7 +76,19 @@ public class ArticleContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        return null;
+        int uriType = sURIMatcher.match(uri);
+        switch (uriType) {
+            case ARTICLE_LIST:
+                return "vnd.android.cursor.dir/vnd.cz.cvut.skorpste.rafr.article";
+            case ARTICLE_ID:
+                return "vnd.android.cursor.item/vnd.cz.cvut.skorpste.rafr.article";
+            case FEED_LIST:
+                return "vnd.android.cursor.dir/vnd.cz.cvut.skorpste.rafr.feed";
+            case FEED_ID:
+                return "vnd.android.cursor.item/vnd.cz.cvut.skorpste.rafr.feed";
+            default:
+                return null;
+        }
     }
 
     @Override

@@ -1,11 +1,9 @@
 package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ListView;
-import android.widget.ShareActionProvider;
 import cz.cvut.skorpste.model.ArticleArrayAdapter;
 import cz.cvut.skorpste.model.Article;
 import cz.cvut.skorpste.model.Articles;
@@ -58,7 +56,7 @@ public class ArticleListFragment extends android.app.ListFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.setting, menu);
+        inflater.inflate(R.menu.articlelist, menu);
     }
 
     @Override

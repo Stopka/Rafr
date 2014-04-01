@@ -18,7 +18,8 @@
                   android:label="@string/article_detail"
                   android:parentActivityName=".controller.activity.ArticleListActivity"/>
         <activity android:name=".controller.activity.FeedListActivity"
-                  android:label="@string/feed_list"/>
+                  android:label="@string/feed_list"
+                  android:parentActivityName=".controller.activity.ArticleListActivity"/>
         <provider
                 android:name=".model.database.ArticleContentProvider"
                 android:authorities="cz.cvut.skorpste.rafr"
