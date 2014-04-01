@@ -130,6 +130,7 @@ public class ArticleContentProvider extends ContentProvider {
             case ARTICLE_ID:
                 id = uri.getLastPathSegment();
                 rowsDeleted = sqlDB.delete(ArticleTable.TABLE_NAME, ArticleTable.ID + "=" + id, null);
+                getContext().getContentResolver().notifyChange(ARTICLE_URI, null);
                 break;
             case FEED_LIST:
                 rowsDeleted = sqlDB.delete(FeedTable.TABLE_NAME, selection, selectionArgs);
@@ -137,6 +138,7 @@ public class ArticleContentProvider extends ContentProvider {
             case FEED_ID:
                 id = uri.getLastPathSegment();
                 rowsDeleted = sqlDB.delete(FeedTable.TABLE_NAME, FeedTable.ID + "=" + id, null);
+                getContext().getContentResolver().notifyChange(FEED_URI, null);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

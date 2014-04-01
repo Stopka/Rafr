@@ -8,4 +8,9 @@
     <string name="article_list">Article list</string>
     <string name="feed_list">Feed list</string>
     <string name="add_feed">Add feed</string>
+    <string name="feed_delete_confirm">Are you sure to delete feed?</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

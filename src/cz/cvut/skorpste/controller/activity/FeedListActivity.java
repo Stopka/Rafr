@@ -8,7 +8,9 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import cz.cvut.skorpste.R;
 import cz.cvut.skorpste.controller.fragment.ArticleFragment;
@@ -82,7 +84,7 @@ public class FeedListActivity extends ListActivity implements LoaderManager.Load
         input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT);
         builder.setView(input);
 
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ContentValues cv=new ContentValues();
@@ -90,7 +92,7 @@ public class FeedListActivity extends ListActivity implements LoaderManager.Load
                 getContentResolver().insert(ArticleContentProvider.FEED_URI,cv);
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -98,5 +100,31 @@ public class FeedListActivity extends ListActivity implements LoaderManager.Load
         });
 
         builder.show();
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, final int position, long id) {
+        final int pos=position;
+        Cursor cursor=(Cursor)l.getItemAtPosition(position);
+        int feed_col=cursor.getColumnIndex(FeedTable.ID);
+        final String feed_id=cursor.getString(feed_col);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.feed_delete_confirm);
+
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getContentResolver().delete(ArticleContentProvider.FEED_URI,FeedTable.ID+"=?",new String[]{feed_id});
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+        super.onListItemClick(l, v, position, id);
     }
 }
