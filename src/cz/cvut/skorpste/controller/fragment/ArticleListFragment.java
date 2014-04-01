@@ -1,27 +1,80 @@
 package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.LoaderManager;
 import android.content.Context;
+import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import cz.cvut.skorpste.model.ArticleArrayAdapter;
 import cz.cvut.skorpste.model.Article;
 import cz.cvut.skorpste.model.Articles;
 import cz.cvut.skorpste.R;
+import cz.cvut.skorpste.model.database.ArticleContentProvider;
+import cz.cvut.skorpste.model.database.ArticleTable;
+import cz.cvut.skorpste.model.database.FeedTable;
 import cz.cvut.skorpste.model.feeds.FeedReader;
 
 /**
  * Created by stopka on 13.3.14.
  */
-public class ArticleListFragment extends android.app.ListFragment {
+public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    Article[] articles;
-
+    private final int ARTICLE_LOADER=1;
     ListListener listener;
 
     private FeedReader refreshTask;
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(),R.layout.article_list_item,null,
+                    new String[]{ArticleTable.TITLE},
+                    new int[]{R.id.title},
+                    CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+            setListAdapter(adapter);
+            getLoaderManager().initLoader(ARTICLE_LOADER, null, this);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case ARTICLE_LOADER:
+                getActivity().setProgressBarIndeterminate(true);
+                getActivity().setProgressBarVisibility(true);
+                return new CursorLoader(getActivity(), ArticleContentProvider.ARTICLE_URI,null,null,null, null);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        switch (loader.getId()) {
+            case ARTICLE_LOADER:
+                ((SimpleCursorAdapter)getListAdapter()).swapCursor(data);
+                getActivity().setProgressBarVisibility(false);
+                break;
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        switch (loader.getId()) {
+            case ARTICLE_LOADER:
+                ((SimpleCursorAdapter)getListAdapter()).swapCursor(null);
+                getActivity().setProgressBarVisibility(false);
+                break;
+        }
+    }
 
 
     public static interface ListListener {
@@ -41,17 +94,12 @@ public class ArticleListFragment extends android.app.ListFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        articles = Articles.get().getFeeds();
-        ArticleArrayAdapter adapter=new ArticleArrayAdapter(this.getActivity(), R.layout.article_list_item, articles);
-        setListAdapter(adapter);
-        return super.onCreateView(inflater,container,savedInstanceState);
-    }
-
-    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        long feed_id= articles[position].getID();
+        Cursor cursor=(Cursor)l.getItemAtPosition(position);
+        int feed_col=cursor.getColumnIndex(FeedTable.ID);
+        long feed_id=cursor.getLong(feed_col);
         listener.onListItemClick(feed_id);
+        super.onListItemClick(l, v, position, id);
     }
 
     @Override
