@@ -10,6 +10,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.fetcher.FeedF
 import com.google.code.rome.android.repackaged.com.sun.syndication.fetcher.FetcherException;
 import com.google.code.rome.android.repackaged.com.sun.syndication.fetcher.impl.HttpURLFeedFetcher;
 import com.google.code.rome.android.repackaged.com.sun.syndication.io.FeedException;
+import cz.cvut.skorpste.R;
 import cz.cvut.skorpste.model.database.ArticleContentProvider;
 import cz.cvut.skorpste.model.database.ArticleTable;
 import cz.cvut.skorpste.model.database.FeedTable;
@@ -25,8 +26,11 @@ import java.util.List;
 public class FeedReader extends AsyncTask<Object,Integer,List> {
     Context context;
 
-    public FeedReader(Context context){
+    StatusListener listener;
+
+    public FeedReader(Context context,StatusListener listener){
        this.context=context;
+       this.listener=listener;
     }
 
     private SyndFeed getMostRecentNews(final String feedUrl) {
@@ -45,9 +49,12 @@ public class FeedReader extends AsyncTask<Object,Integer,List> {
 
 
 
+
+
     @Override
     protected List doInBackground(Object... params) {
         List<FeedItem> feeds=getFeedList();
+        publishProgress(0);
         int size=feeds.size();
         int position=0;
         for(FeedItem item:feeds){
@@ -61,6 +68,25 @@ public class FeedReader extends AsyncTask<Object,Integer,List> {
         }
         return null;
     }
+
+    @Override
+    protected void onPreExecute() {
+        listener.onRefreshStart();
+        super.onPreExecute();
+    }
+
+    @Override
+    protected void onPostExecute(List list) {
+        listener.onRefreshFinished();
+        super.onPostExecute(list);
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        listener.onRefreshUpdate(values[0]);
+    }
+
 
     private class FeedItem{
         int id;
@@ -97,5 +123,12 @@ public class FeedReader extends AsyncTask<Object,Integer,List> {
             values.put(ArticleTable.FEED_ID,feed_id);
             context.getContentResolver().insert(ArticleContentProvider.ARTICLE_URI,values);
         }
+    }
+    public static interface StatusListener {
+        public void onRefreshStart();
+
+        public void onRefreshFinished();
+
+        public void onRefreshUpdate(int value);
     }
 }

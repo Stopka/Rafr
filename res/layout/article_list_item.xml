@@ -10,6 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="MistView example with ArrayAdapter"
+            android:text="Default Title"
             android:id="@+id/title" android:textStyle="bold" android:textSize="22sp"/>
 </LinearLayout>

@@ -3,6 +3,7 @@ package cz.cvut.skorpste.controller.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -10,9 +11,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.*;
 import cz.cvut.skorpste.model.ArticleArrayAdapter;
 import cz.cvut.skorpste.model.Article;
 import cz.cvut.skorpste.model.Articles;
@@ -25,12 +24,14 @@ import cz.cvut.skorpste.model.feeds.FeedReader;
 /**
  * Created by stopka on 13.3.14.
  */
-public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>,FeedReader.StatusListener{
 
     private final int ARTICLE_LOADER=1;
     ListListener listener;
 
     private FeedReader refreshTask;
+
+    private MenuItem refresh_button;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.articlelist, menu);
+        refresh_button = menu.findItem(R.id.menu_item_refresh);
     }
 
     @Override
@@ -120,7 +122,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
                 listener.onConfigClick();
                 return true;
             case R.id.menu_item_refresh:
-                refreshTask=new FeedReader(getActivity());
+                refreshTask=new FeedReader(getActivity(),this);
                 refreshTask.execute();
                 return true;
             default:
@@ -128,15 +130,19 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
         }
     }
 
+    @Override
     public void onRefreshStart(){
-        View refreshView;
-        LayoutInflater inflater = (LayoutInflater) getActivity().getActionBar().getThemedContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        /*
-        if(refreshing)
-            refreshView = inflater.inflate(R.layout.actionbar_indeterminate_progress, null);
-        else
-            refreshView = inflater.inflate(R.layout.refresh_icon, null);
+        refresh_button.setActionView(R.layout.actionbar_indeterminate_progress);
+    }
 
-        menuItem.setActionView(refreshView);*/
+    @Override
+    public void onRefreshFinished(){
+        refresh_button.setActionView(null);
+    }
+
+    @Override
+    public void onRefreshUpdate(int value) {
+        TextView text = (TextView)refresh_button.getActionView().findViewById(R.id.progressbar_text);
+        text.setText(value+"%");
     }
 }
