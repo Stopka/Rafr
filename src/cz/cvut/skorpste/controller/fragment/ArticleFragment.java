@@ -20,6 +20,7 @@ import cz.cvut.skorpste.R;
 import cz.cvut.skorpste.model.database.ArticleContentProvider;
 import cz.cvut.skorpste.model.database.ArticleTable;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -96,7 +97,7 @@ public class ArticleFragment extends Fragment implements LoaderManager.LoaderCal
                 article.setMovementMethod(LinkMovementMethod.getInstance());
                 TextView date = (TextView) getView().findViewById(R.id.date);
                 Date date_value = new Date(data.getLong(data.getColumnIndex(ArticleTable.DATE)));
-                date.setText(date_value.toString());
+                date.setText(DateFormat.getDateTimeInstance().format(date_value));
 
                 getActivity().setProgressBarVisibility(false);
                 break;

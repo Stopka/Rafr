@@ -18,20 +18,23 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="App Translation Service Noe Availible to All Developers"
-                    android:id="@+id/title" android:textStyle="bold"
+                    android:id="@+id/title"
+                    android:textStyle="bold"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Nov 13, 2013 by Android Developers"
-                    android:id="@+id/date" android:clickable="false"/>
+                    android:id="@+id/date"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Posted by Ellie Powers, Google Play team"
-                    android:id="@+id/author" android:paddingTop="10dp" android:paddingBottom="20dp"
+                    android:id="@+id/author"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
                     android:textStyle="italic"/>
             <TextView
                     android:layout_width="match_parent"
