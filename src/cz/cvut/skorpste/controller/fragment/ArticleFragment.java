@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.*;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
@@ -82,7 +84,8 @@ public class ArticleFragment extends Fragment implements LoaderManager.LoaderCal
                 TextView author = (TextView) getView().findViewById(R.id.author);
                 author.setText(data.getString(data.getColumnIndex(ArticleTable.AUTHOR)));
                 TextView article = (TextView) getView().findViewById(R.id.text);
-                article.setText(data.getString(data.getColumnIndex(ArticleTable.CONTENT)));
+                article.setText(Html.fromHtml(data.getString(data.getColumnIndex(ArticleTable.CONTENT))));
+                article.setMovementMethod(LinkMovementMethod.getInstance());
                 TextView date = (TextView) getView().findViewById(R.id.date);
                 Date date_value = new Date(data.getLong(data.getColumnIndex(ArticleTable.DATE)));
                 date.setText(date_value.toString());
