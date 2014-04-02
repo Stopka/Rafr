@@ -2,6 +2,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+            android:id="@+id/menu_article_open"
+            android:title="@string/openweb"
+            android:showAsAction="always"
+            android:icon="@drawable/ic_action_web_site"/>
+    <item
             android:id="@+id/menu_article_share"
             android:title="@string/share"
             android:showAsAction="ifRoom"

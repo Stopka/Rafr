@@ -16,4 +16,5 @@
     <string name="refresh">Refresh</string>
     <string name="share_chooser">Choose app to share</string>
     <string name="share_text">I found an awesome article to read, check it here: %s</string>
+    <string name="openweb">Open in browser</string>
 </resources>

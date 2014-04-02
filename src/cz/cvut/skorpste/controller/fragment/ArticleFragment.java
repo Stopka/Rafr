@@ -7,6 +7,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -46,7 +47,14 @@ public class ArticleFragment extends Fragment implements LoaderManager.LoaderCal
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.article_fragment, container, false);
+        View view= inflater.inflate(R.layout.article_fragment, container, false);
+        ((TextView)view.findViewById(R.id.title)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLink();
+            }
+        });
+        return view;
     }
 
     @Override
@@ -118,8 +126,16 @@ public class ArticleFragment extends Fragment implements LoaderManager.LoaderCal
                 Intent chooser = Intent.createChooser(shareIntent, getString(R.string.share_chooser));
                 startActivity(chooser);
                 return true;
+            case R.id.menu_article_open:
+                openLink();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void openLink(){
+        Intent openIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(shareLink));
+        startActivity(openIntent);
     }
 }
