@@ -50,6 +50,9 @@ public class ArticleContentProvider extends ContentProvider {
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
             case ARTICLE_LIST:
+                if(sortOrder==null){
+                    sortOrder="date DESC";
+                }
                 queryBuilder.setTables(ArticleTable.TABLE_NAME);
                 break;
             case ARTICLE_ID:
