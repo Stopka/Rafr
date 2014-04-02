@@ -3,7 +3,7 @@
     <string name="app_name">Rafr</string>
     <string name="share">Share</string>
     <string name="setting">Configure feeds</string>
-    <string name="share_subject">Sending a text</string>
+    <string name="share_subject">Article to read: %s</string>
     <string name="article_detail">Article detail</string>
     <string name="article_list">Article list</string>
     <string name="feed_list">Feed list</string>
@@ -14,4 +14,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="refresh">Refresh</string>
+    <string name="share_chooser">Choose app to share</string>
+    <string name="share_text">I found an awesome article to read, check it here: %s</string>
 </resources>
