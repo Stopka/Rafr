@@ -114,12 +114,12 @@ public class FeedReader extends AsyncTask<Object,Integer,List> {
         for (SyndEntry entry:entries){
             ContentValues values=new ContentValues();
             if(entry.getAuthor()!=null) {
-                values.put(ArticleTable.AUTHOR, entry.getAuthor());
+                values.put(ArticleTable.AUTHOR, entry.getAuthor().trim());
             }
-            values.put(ArticleTable.TITLE,entry.getTitle());
-            values.put(ArticleTable.LINK,entry.getLink());
+            values.put(ArticleTable.TITLE,entry.getTitle().trim());
+            values.put(ArticleTable.LINK,entry.getLink().trim());
             values.put(ArticleTable.DATE,entry.getPublishedDate().getTime());
-            values.put(ArticleTable.CONTENT,entry.getDescription().getValue());
+            values.put(ArticleTable.CONTENT,entry.getDescription().getValue().trim());
             values.put(ArticleTable.FEED_ID,feed_id);
             context.getContentResolver().insert(ArticleContentProvider.ARTICLE_URI,values);
         }
