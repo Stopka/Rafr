@@ -2,7 +2,7 @@
   <configuration default="false" name="Rafr Galaxy Nexus" type="AndroidRunConfigurationType" factoryName="Android Application">
     <module name="Rafr" />
     <option name="ACTIVITY_CLASS" value="cz.cvut.skorpste.controller.activity.ArticleListActivity" />
-    <option name="MODE" value="specific_activity" />
+    <option name="MODE" value="default_activity" />
     <option name="DEPLOY" value="true" />
     <option name="ARTIFACT_NAME" value="" />
     <option name="TARGET_SELECTION_MODE" value="EMULATOR" />

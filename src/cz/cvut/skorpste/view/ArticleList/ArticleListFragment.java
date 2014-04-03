@@ -46,10 +46,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-            SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(),R.layout.article_list_item,null,
-                    new String[]{ArticleTable.TITLE},
-                    new int[]{R.id.title},
-                    CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+            ArticleAdapter adapter = new ArticleAdapter(getActivity(),null,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
             setListAdapter(adapter);
             getLoaderManager().initLoader(ARTICLE_LOADER, null, this);
     }
@@ -74,7 +71,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         switch (loader.getId()) {
             case ARTICLE_LOADER:
-                ((SimpleCursorAdapter)getListAdapter()).swapCursor(data);
+                ((ArticleAdapter)getListAdapter()).swapCursor(data);
                 getActivity().setProgressBarVisibility(false);
                 break;
             case READER_LOADER:
@@ -88,7 +85,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
     public void onLoaderReset(Loader<Cursor> loader) {
         switch (loader.getId()) {
             case ARTICLE_LOADER:
-                ((SimpleCursorAdapter)getListAdapter()).swapCursor(null);
+                ((ArticleAdapter)getListAdapter()).swapCursor(null);
                 getActivity().setProgressBarVisibility(false);
                 break;
             case READER_LOADER:
