@@ -1,35 +1,44 @@
 package cz.cvut.skorpste.controller.fragment;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.LoaderManager;
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.CursorLoader;
-import android.content.DialogInterface;
-import android.content.Loader;
+import android.content.*;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.*;
 import android.widget.*;
-import cz.cvut.skorpste.model.ArticleArrayAdapter;
-import cz.cvut.skorpste.model.Article;
-import cz.cvut.skorpste.model.Articles;
 import cz.cvut.skorpste.R;
 import cz.cvut.skorpste.model.database.ArticleContentProvider;
 import cz.cvut.skorpste.model.database.ArticleTable;
 import cz.cvut.skorpste.model.database.FeedTable;
-import cz.cvut.skorpste.model.feeds.FeedReader;
+import cz.cvut.skorpste.model.feeds.FeedLoader;
 
 /**
  * Created by stopka on 13.3.14.
  */
-public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>,FeedReader.StatusListener{
+public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private final int ARTICLE_LOADER=1;
+    private final int READER_LOADER=2;
+
+    private BroadcastReceiver progressReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            int progress = intent.getIntExtra(FeedLoader.PROGRESS_BROADCAST_VALUE, -1);
+            TextView text = (TextView)refresh_button.getActionView().findViewById(R.id.progressbar_text);
+            if(progress==-1){
+                text.setText("");
+                return;
+            }
+            text.setText(progress+"%");
+        }
+    };
+
     ListListener listener;
 
-    private FeedReader refreshTask;
+    private FeedLoader refreshTask;
 
     private MenuItem refresh_button;
 
@@ -52,6 +61,10 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
                 getActivity().setProgressBarIndeterminate(true);
                 getActivity().setProgressBarVisibility(true);
                 return new CursorLoader(getActivity(), ArticleContentProvider.ARTICLE_URI,null,null,null, null);
+            case READER_LOADER:
+                LocalBroadcastManager.getInstance(getActivity()).registerReceiver(progressReceiver, new IntentFilter(FeedLoader.PROGRESS_BROADCAST));
+                refresh_button.setActionView(R.layout.actionbar_indeterminate_progress);
+                return new FeedLoader(getActivity());
             default:
                 return null;
         }
@@ -64,6 +77,10 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
                 ((SimpleCursorAdapter)getListAdapter()).swapCursor(data);
                 getActivity().setProgressBarVisibility(false);
                 break;
+            case READER_LOADER:
+                refresh_button.setActionView(null);
+                LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(progressReceiver);
+                break;
         }
     }
 
@@ -73,6 +90,10 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
             case ARTICLE_LOADER:
                 ((SimpleCursorAdapter)getListAdapter()).swapCursor(null);
                 getActivity().setProgressBarVisibility(false);
+                break;
+            case READER_LOADER:
+                refresh_button.setActionView(null);
+                LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(progressReceiver);
                 break;
         }
     }
@@ -122,14 +143,13 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
                 listener.onConfigClick();
                 return true;
             case R.id.menu_item_refresh:
-                refreshTask=new FeedReader(getActivity(),this);
-                refreshTask.execute();
+                getLoaderManager().initLoader(READER_LOADER, null, this).forceLoad();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    /*
     @Override
     public void onRefreshStart(){
         refresh_button.setActionView(R.layout.actionbar_indeterminate_progress);
@@ -144,5 +164,5 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
     public void onRefreshUpdate(int value) {
         TextView text = (TextView)refresh_button.getActionView().findViewById(R.id.progressbar_text);
         text.setText(value+"%");
-    }
+    }*/
 }

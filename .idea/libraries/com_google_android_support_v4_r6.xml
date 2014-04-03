@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="com.google.android:support-v4:r6" type="repository">
+    <properties maven-id="com.google.android:support-v4:r6" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/support-v4-r6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-4.0.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpclient-4.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-codec-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/opengl-api-gl1.1-android-2.1_r1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/xmlParserAPIs-2.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/xpp3-1.1.4c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/json-20080701.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

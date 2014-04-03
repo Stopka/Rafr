@@ -17,6 +17,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="android-rome-feed-reader-1.0.0-r3" level="project" />
     <orderEntry type="library" exported="" name="jdom-1.1.1-android-fork" level="project" />
+    <orderEntry type="library" name="com.google.android:support-v4:r6" level="project" />
   </component>
 </module>
 
