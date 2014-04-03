@@ -1,12 +1,13 @@
-package cz.cvut.skorpste.controller.activity;
+package cz.cvut.skorpste.view.ArticleList;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import cz.cvut.skorpste.R;
-import cz.cvut.skorpste.controller.fragment.ArticleFragment;
-import cz.cvut.skorpste.controller.fragment.ArticleListFragment;
+import cz.cvut.skorpste.view.Article.ArticleActivity;
+import cz.cvut.skorpste.view.Article.ArticleFragment;
+import cz.cvut.skorpste.view.FeedList.FeedListActivity;
 
 public class ArticleListActivity extends Activity implements ArticleListFragment.ListListener {
     boolean wide_layout;

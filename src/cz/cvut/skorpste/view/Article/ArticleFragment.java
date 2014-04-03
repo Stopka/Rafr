@@ -1,4 +1,4 @@
-package cz.cvut.skorpste.controller.fragment;
+package cz.cvut.skorpste.view.Article;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -12,10 +12,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.*;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
-import cz.cvut.skorpste.model.Article;
-import cz.cvut.skorpste.model.Articles;
 import cz.cvut.skorpste.R;
 import cz.cvut.skorpste.model.database.ArticleContentProvider;
 import cz.cvut.skorpste.model.database.ArticleTable;

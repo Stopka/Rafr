@@ -1,4 +1,4 @@
-package cz.cvut.skorpste.controller.fragment;
+package cz.cvut.skorpste.view.ArticleList;
 
 import android.app.Activity;
 import android.app.LoaderManager;

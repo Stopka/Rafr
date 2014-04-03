@@ -1,4 +1,4 @@
-package cz.cvut.skorpste.controller.activity;
+package cz.cvut.skorpste.view.FeedList;
 
 import android.app.*;
 import android.content.*;
@@ -13,10 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import cz.cvut.skorpste.R;
-import cz.cvut.skorpste.controller.fragment.ArticleFragment;
-import cz.cvut.skorpste.controller.fragment.ArticleListFragment;
 import cz.cvut.skorpste.model.database.ArticleContentProvider;
-import cz.cvut.skorpste.model.database.ArticleTable;
 import cz.cvut.skorpste.model.database.FeedTable;
 
 public class FeedListActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {

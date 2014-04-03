@@ -8,19 +8,19 @@
             android:targetSdkVersion="19"/>
     <application android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher">
-        <activity android:name=".controller.activity.ArticleListActivity"
+        <activity android:name=".view.ArticleList.ArticleListActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".controller.activity.ArticleActivity"
+        <activity android:name=".view.Article.ArticleActivity"
                   android:label="@string/article_detail"
-                  android:parentActivityName=".controller.activity.ArticleListActivity"/>
-        <activity android:name=".controller.activity.FeedListActivity"
+                  android:parentActivityName=".view.ArticleList.ArticleListActivity"/>
+        <activity android:name=".view.FeedList.FeedListActivity"
                   android:label="@string/feed_list"
-                  android:parentActivityName=".controller.activity.ArticleListActivity"/>
+                  android:parentActivityName=".view.ArticleList.ArticleListActivity"/>
         <provider
                 android:name=".model.database.ArticleContentProvider"
                 android:authorities="cz.cvut.skorpste.rafr"

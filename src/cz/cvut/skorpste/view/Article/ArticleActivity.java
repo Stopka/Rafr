@@ -1,11 +1,10 @@
-package cz.cvut.skorpste.controller.activity;
+package cz.cvut.skorpste.view.Article;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import cz.cvut.skorpste.R;
-import cz.cvut.skorpste.controller.fragment.ArticleFragment;
 
 /**
  * Created by stopka on 14.3.14.

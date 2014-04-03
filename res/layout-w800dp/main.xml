@@ -6,7 +6,7 @@
         >
     <fragment android:layout_width="320dp"
               android:layout_height="wrap_content"
-              android:name="cz.cvut.skorpste.controller.fragment.ArticleListFragment" android:id="@+id/fragment"
+              android:name="cz.cvut.skorpste.view.ArticleList.ArticleListFragment" android:id="@+id/fragment"
               android:layout_gravity="center_horizontal" tools:layout="@layout/listfragment"/>
     <FrameLayout
             android:id="@+id/detailFragment"
