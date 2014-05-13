@@ -19,7 +19,6 @@ import cz.cvut.skorpste.model.feeds.FeedService;
 public class ArticleListFragment extends android.app.ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private final int ARTICLE_LOADER=1;
-    private final int READER_LOADER=2;
 
     private BroadcastReceiver refreshStateReceiver = new BroadcastReceiver() {
         @Override
@@ -31,6 +30,7 @@ public class ArticleListFragment extends android.app.ListFragment implements Loa
                     refresh_button.setActionView(R.layout.actionbar_indeterminate_progress);
                     break;
                 case FeedService.STATE_PROGRESS:
+                    refresh_button.setActionView(R.layout.actionbar_indeterminate_progress);
                     int progress = intent.getIntExtra(FeedService.BROADCAST_PROGRESS_VALUE, -1);
                     TextView text = (TextView)refresh_button.getActionView().findViewById(R.id.progressbar_text);
                     if(progress==-1){
