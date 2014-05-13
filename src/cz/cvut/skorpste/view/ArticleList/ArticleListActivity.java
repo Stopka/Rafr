@@ -16,7 +16,13 @@ import cz.cvut.skorpste.view.FeedList.FeedListActivity;
 
 public class ArticleListActivity extends Activity implements ArticleListFragment.ListListener {
     boolean wide_layout;
-    private static final long DOWNLOAD_INTERVAL = AlarmManager.INTERVAL_FIFTEEN_MINUTES / 15;
+
+    @Override
+    protected void onStart() {
+        Intent intent=new Intent(ScheduleBroadcastReceiver.SCHEDULE);
+        sendBroadcast(intent);
+        super.onStart();
+    }
 
     /**
      * Called when the activity is first created.

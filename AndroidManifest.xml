@@ -27,10 +27,17 @@
                 android:authorities="cz.cvut.skorpste.rafr"
                 android:exported="false"/>
         <service android:name=".model.feeds.FeedService"
-                 android:icon="@drawable/ic_launcher"/>
+                 android:icon="@drawable/ic_launcher"
+                android:enabled="true"/>
         <receiver android:name=".model.feeds.ScheduleBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="cz.cvut.skorpste.rafr.SCHEDULE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".model.feeds.AlarmBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cz.cvut.skorpste.rafr.RUN" />
             </intent-filter>
         </receiver>
 
