@@ -5,10 +5,7 @@ import android.content.*;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -26,6 +23,7 @@ public class FeedListActivity extends ListActivity implements LoaderManager.Load
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         getLoaderManager().initLoader(FEED_LOADER, null, this);
     }
 
@@ -123,5 +121,16 @@ public class FeedListActivity extends ListActivity implements LoaderManager.Load
 
         builder.show();
         super.onListItemClick(l, v, position, id);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
     }
 }

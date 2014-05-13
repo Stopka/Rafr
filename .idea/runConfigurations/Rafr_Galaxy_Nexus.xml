@@ -9,7 +9,7 @@
     <option name="USE_LAST_SELECTED_DEVICE" value="false" />
     <option name="PREFERRED_AVD" value="Galaxy_Nexus_19_x86" />
     <option name="USE_COMMAND_LINE" value="true" />
-    <option name="COMMAND_LINE" value="-scale 0.31" />
+    <option name="COMMAND_LINE" value="-scale 0.31 -dns-server 8.8.8.8" />
     <option name="WIPE_USER_DATA" value="false" />
     <option name="DISABLE_BOOT_ANIMATION" value="false" />
     <option name="NETWORK_SPEED" value="full" />

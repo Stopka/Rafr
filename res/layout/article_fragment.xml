@@ -17,7 +17,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="App Translation Service Noe Availible to All Developers"
                     android:id="@+id/title"
                     android:textStyle="bold"
                     />
@@ -25,13 +24,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Nov 13, 2013 by Android Developers"
                     android:id="@+id/date"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Posted by Ellie Powers, Google Play team"
                     android:id="@+id/author"
                     android:paddingTop="10dp"
                     android:paddingBottom="20dp"
@@ -40,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Nam egestas sagittis magna, vel ullamcorper leo posuere et. Fusce non suscipit justo. Curabitur rutrum semper nulla, at scelerisque est consequat eget.  Nulla sollicitudin velit tortor, id ultricies libero laoreet et. Etiam ut libero vel purus varius faucibus vel sit amet nisl. In eu condimentum odio. Integer in risus consequat, semper ante ac, egestas dolor.\n\n Nulla sollicitudin velit tortor, id ultricies libero laoreet et. Etiam ut libero vel purus varius faucibus vel sit amet nisl. In eu condimentum odio. Integer in risus consequat, semper ante ac, egestas dolor. Aenean ut ante dui. Phasellus dapibus velit at tristique lacinia.\n\nSuspendisse iaculis accumsan massa et sollicitudin. Curabitur orci lacus, scelerisque ut purus nec, gravida interdum lectus. Sed eleifend urna vel tortor mollis, sit amet lacinia sapien fermentum. Curabitur nisl sapien, dapibus a vestibulum et, iaculis ut nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Ut nec leo at nunc vulputate euismod eget ut nibh. Ut sit amet est non purus dapibus elementum in eu massa. Praesent ligula risus, sodales nec sapien sed, hendrerit vehicula odio. Morbi eu purus vitae leo tristique vulputate vel ut augue. Maecenas nec odio vitae purus pulvinar facilisis a eu est. Nullam luctus a metus sit amet condimentum. Donec lacus augue, sodales in erat vitae, faucibus dictum velit. Ut posuere sapien et magna suscipit iaculis. "
+                    android:text="Loading..."
                     android:id="@+id/text"/>
         </LinearLayout>
     </ScrollView>
